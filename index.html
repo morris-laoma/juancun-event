@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>眷村麻醬 × 全聯 — 新品上市登錄抽獎</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans TC', sans-serif;
+      background: #f5f0eb;
+      color: #2c2c2a;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .page {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* 頂部 Hero */
+    .hero {
+      text-align: center;
+      background: #fff;
+      border-radius: 16px;
+      padding: 2rem 1.5rem 1.75rem;
+      margin-bottom: 1.25rem;
+      border: 0.5px solid #e0dbd4;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 12px;
+      background: #FAECE7;
+      color: #993C1D;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .hero h1 {
+      font-size: 26px;
+      font-weight: 600;
+      color: #2c2c2a;
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+
+    .hero h1 span {
+      color: #D85A30;
+    }
+
+    .hero p {
+      font-size: 14px;
+      color: #888780;
+      line-height: 1.7;
+    }
+
+    .deadline {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 12px;
+      color: #993C1D;
+      background: #FAECE7;
+      padding: 4px 12px;
+      border-radius: 6px;
+    }
+
+    /* 步驟說明 */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 1.25rem;
+    }
+
+    .step {
+      background: #fff;
+      border: 0.5px solid #e0dbd4;
+      border-radius: 12px;
+      padding: 14px 8px;
+      text-align: center;
+    }
+
+    .step-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #FAECE7;
+      color: #993C1D;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 8px;
+    }
+
+    .step p {
+      font-size: 12px;
+      color: #5F5E5A;
+      line-height: 1.6;
+    }
+
+    /* 表單卡片 */
+    .form-card {
+      background: #fff;
+      border: 0.5px solid #e0dbd4;
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-card h2 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #2c2c2a;
+      margin-bottom: 1.25rem;
+      padding-bottom: 12px;
+      border-bottom: 0.5px solid #e0dbd4;
+    }
+
+    .field {
+      margin-bottom: 1.1rem;
+    }
+
+    .field label {
+      display: block;
+      font-size: 13px;
+      color: #5F5E5A;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    .field label .required {
+      color: #E24B4A;
+      margin-left: 2px;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 10px 13px;
+      font-size: 15px;
+      border: 0.5px solid #ccc;
+      border-radius: 8px;
+      background: #fff;
+      color: #2c2c2a;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      -webkit-appearance: none;
+    }
+
+    .field input:focus {
+      border-color: #D85A30;
+      box-shadow: 0 0 0 3px rgba(216,90,48,0.12);
+    }
+
+    .field input.error {
+      border-color: #E24B4A;
+      box-shadow: 0 0 0 3px rgba(226,75,74,0.1);
+    }
+
+    .field .hint {
+      font-size: 12px;
+      color: #888780;
+      margin-top: 5px;
+      line-height: 1.5;
+    }
+
+    .field .err-msg {
+      font-size: 12px;
+      color: #A32D2D;
+      margin-top: 5px;
+      display: none;
+    }
+
+    .field .err-msg.show {
+      display: block;
+    }
+
+    /* 發票欄位 */
+    .invoice-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .invoice-wrap .inv-prefix {
+      width: 72px;
+    }
+
+    .invoice-wrap .inv-sep {
+      font-size: 18px;
+      color: #ccc;
+      flex-shrink: 0;
+      padding-bottom: 2px;
+    }
+
+    .invoice-wrap .inv-num {
+      flex: 1;
+    }
+
+    /* 個資聲明 */
+    .privacy {
+      font-size: 12px;
+      color: #888780;
+      line-height: 1.7;
+      padding: 0.9rem 1rem;
+      background: #faf8f5;
+      border-radius: 10px;
+      border: 0.5px solid #e0dbd4;
+      margin-bottom: 1rem;
+    }
+
+    /* 送出按鈕 */
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      background: #D85A30;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+      letter-spacing: 0.5px;
+    }
+
+    .submit-btn:hover {
+      background: #993C1D;
+    }
+
+    .submit-btn:active {
+      transform: scale(0.98);
+    }
+
+    .submit-btn:disabled {
+      background: #ccc;
+      color: #888;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* 成功畫面 */
+    .success-card {
+      display: none;
+      text-align: center;
+      background: #fff;
+      border: 0.5px solid #e0dbd4;
+      border-radius: 16px;
+      padding: 2.5rem 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .success-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #EAF3DE;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+      font-size: 26px;
+      color: #3B6D11;
+    }
+
+    .success-card h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #2c2c2a;
+    }
+
+    .success-card p {
+      font-size: 14px;
+      color: #5F5E5A;
+      line-height: 1.7;
+    }
+
+    .success-serial {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 13px;
+      font-family: monospace;
+      background: #f5f0eb;
+      padding: 6px 16px;
+      border-radius: 6px;
+      color: #5F5E5A;
+      border: 0.5px solid #e0dbd4;
+    }
+
+    /* 錯誤提示橫幅 */
+    .alert-banner {
+      display: none;
+      padding: 12px 16px;
+      background: #FCEBEB;
+      border: 0.5px solid #F7C1C1;
+      border-radius: 10px;
+      font-size: 14px;
+      color: #A32D2D;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .alert-banner.show {
+      display: block;
+    }
+
+    /* 載入中動畫 */
+    .loading-dots::after {
+      content: '';
+      animation: dots 1.2s steps(3, end) infinite;
+    }
+
+    @keyframes dots {
+      0%   { content: ''; }
+      33%  { content: '.'; }
+      66%  { content: '..'; }
+      100% { content: '...'; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-tag">全聯限定 × 新品上市</div>
+    <h1>眷村<span>麻醬</span><br>登錄抽好禮</h1>
+    <p>全聯購買眷村麻醬，登錄序號即可參加抽獎<br>好禮等你帶回家！</p>
+    <div class="deadline">活動截止日：2026/05/23</div>
+  </div>
+
+  <!-- 步驟說明 -->
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <p>全聯購買<br>眷村麻醬</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <p>記下產品<br>流水序號</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <p>填表登錄<br>參加抽獎</p>
+    </div>
+  </div>
+
+  <!-- 錯誤橫幅 -->
+  <div class="alert-banner" id="alert-banner"></div>
+
+  <!-- 表單 -->
+  <div class="form-card" id="form-section">
+    <h2>填寫登錄資料</h2>
+
+    <div class="field">
+      <label>姓名 <span class="required">*</span></label>
+      <input type="text" id="name" placeholder="請輸入真實姓名" autocomplete="name" />
+      <div class="err-msg" id="name-err">請輸入姓名</div>
+    </div>
+
+    <div class="field">
+      <label>聯絡電話 <span class="required">*</span></label>
+      <input type="tel" id="phone" placeholder="09xxxxxxxx" maxlength="10" autocomplete="tel" />
+      <div class="hint">請填寫可聯繫到您的手機號碼</div>
+      <div class="err-msg" id="phone-err">請輸入有效的手機號碼（09 開頭，共 10 碼）</div>
+    </div>
+
+    <div class="field">
+      <label>產品流水序號 <span class="required">*</span></label>
+      <input type="text" id="serial" placeholder="例：JC-000001" style="font-family:monospace" />
+      <div class="hint">請參照產品貼紙上的序號，格式為 JC-XXXXXX</div>
+      <div class="err-msg" id="serial-err">序號格式不正確，請確認貼紙上的號碼</div>
+    </div>
+
+    <div class="field">
+      <label>統一發票號碼 <span class="required">*</span></label>
+      <div class="invoice-wrap">
+        <div class="inv-prefix">
+          <input type="text" id="inv-prefix" placeholder="AB" maxlength="2"
+            style="text-align:center;text-transform:uppercase;font-family:monospace" />
+        </div>
+        <div class="inv-sep">—</div>
+        <div class="inv-num">
+          <input type="text" id="inv-number" placeholder="12345678" maxlength="8"
+            style="font-family:monospace" />
+        </div>
+      </div>
+      <div class="hint">發票左上角：2 個英文字母 + 8 位數字，如：AB-12345678</div>
+      <div class="err-msg" id="inv-err">發票格式不正確（2 英文 + 8 數字）</div>
+    </div>
+  </div>
+
+  <!-- 個資聲明 -->
+  <div class="privacy" id="privacy-section">
+    本活動依個人資料保護法蒐集您的姓名、電話，僅供本次活動抽獎及得獎通知使用，活動結束後 6 個月內刪除，不作其他用途。
+  </div>
+
+  <!-- 送出按鈕 -->
+  <button class="submit-btn" id="submit-btn" onclick="handleSubmit()">確認送出登錄</button>
+
+  <!-- 成功畫面 -->
+  <div class="success-card" id="success-section">
+    <div class="success-icon">✓</div>
+    <h2>登錄成功！</h2>
+    <p>感謝您參加眷村麻醬抽獎活動<br>得獎結果將以簡訊通知，請保持電話暢通。</p>
+    <div class="success-serial" id="success-serial"></div>
+    <p style="margin-top:20px;font-size:13px;color:#888780">活動截止日：2026/05/23</p>
+  </div>
+
+</div>
+
+<script>
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwMwEHyml3mdVqNAArZVDcSevyrdU5KEo_HaNIPQWEmZoKL-wZ5dow_xTlzL4Q5VGe--g/exec';
+
+  function validate() {
+    let ok = true;
+    document.querySelectorAll('.err-msg').forEach(e => e.classList.remove('show'));
+    document.querySelectorAll('input').forEach(e => e.classList.remove('error'));
+
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const serial = document.getElementById('serial').value.trim().toUpperCase();
+    const invP = document.getElementById('inv-prefix').value.trim().toUpperCase();
+    const invN = document.getElementById('inv-number').value.trim();
+
+    if (!name) {
+      document.getElementById('name-err').classList.add('show');
+      document.getElementById('name').classList.add('error');
+      ok = false;
+    }
+
+    if (!/^09\d{8}$/.test(phone)) {
+      document.getElementById('phone-err').classList.add('show');
+      document.getElementById('phone').classList.add('error');
+      ok = false;
+    }
+
+    if (!/^JC-\d{6}$/.test(serial)) {
+      document.getElementById('serial-err').classList.add('show');
+      document.getElementById('serial').classList.add('error');
+      ok = false;
+    }
+
+    if (!/^[A-Z]{2}$/.test(invP) || !/^\d{8}$/.test(invN)) {
+      document.getElementById('inv-err').classList.add('show');
+      document.getElementById('inv-prefix').classList.add('error');
+      document.getElementById('inv-number').classList.add('error');
+      ok = false;
+    }
+
+    return ok;
+  }
+
+  function handleSubmit() {
+    document.getElementById('alert-banner').classList.remove('show');
+    if (!validate()) return;
+
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.classList.add('loading-dots');
+    btn.textContent = '登錄中';
+
+    const serial = document.getElementById('serial').value.trim().toUpperCase();
+    const invP = document.getElementById('inv-prefix').value.trim().toUpperCase();
+    const invN = document.getElementById('inv-number').value.trim();
+
+    const payload = {
+      name: document.getElementById('name').value.trim(),
+      phone: document.getElementById('phone').value.trim(),
+      serial: serial,
+      invoice: invP + '-' + invN
+    };
+
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        document.getElementById('form-section').style.display = 'none';
+        document.getElementById('privacy-section').style.display = 'none';
+        btn.style.display = 'none';
+        const sc = document.getElementById('success-section');
+        sc.style.display = 'block';
+        document.getElementById('success-serial').textContent = '序號：' + serial;
+      } else {
+        const banner = document.getElementById('alert-banner');
+        banner.textContent = data.message;
+        banner.classList.add('show');
+        btn.disabled = false;
+        btn.classList.remove('loading-dots');
+        btn.textContent = '確認送出登錄';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    })
+    .catch(() => {
+      const banner = document.getElementById('alert-banner');
+      banner.textContent = '網路連線異常，請稍後再試。';
+      banner.classList.add('show');
+      btn.disabled = false;
+      btn.classList.remove('loading-dots');
+      btn.textContent = '確認送出登錄';
+    });
+  }
+
+  document.getElementById('inv-prefix').addEventListener('input', function () {
+    this.value = this.value.toUpperCase().replace(/[^A-Z]/g, '');
+    if (this.value.length === 2) document.getElementById('inv-number').focus();
+  });
+
+  document.getElementById('inv-number').addEventListener('input', function () {
+    this.value = this.value.replace(/[^0-9]/g, '');
+  });
+
+  document.getElementById('phone').addEventListener('input', function () {
+    this.value = this.value.replace(/[^0-9]/g, '');
+  });
+
+  document.getElementById('serial').addEventListener('input', function () {
+    this.value = this.value.toUpperCase();
+  });
+</script>
+
+</body>
+</html>
